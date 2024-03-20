@@ -3,10 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    alejandra = {
-      url = "github:kamadorueda/alejandra/3.0.0";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     "SSO-Auth" = {
       url = "file+https://github.com/9p4/jellyfin-plugin-sso/releases/download/v3.5.2.3/sso-authentication_3.5.2.3.zip";
       flake = false;
@@ -16,13 +12,12 @@
   outputs = {
     self,
     nixpkgs,
-    alejandra,
     ...
   } @ inputs: let
     lib = nixpkgs.lib;
     plugins = import ./plugins.nix;
 
-		# at the moment, I just tested this flake on x86 Linux. If you got different hardware, please test this flake and create a PR!
+    # at the moment, I just tested this flake on x86 Linux. If you got different hardware, please test this flake and create a PR!
     defaultSystems = [
       #"x86_64-darwin"
       "x86_64-linux"
@@ -32,26 +27,24 @@
 
     eachDefaultSystem = lib.genAttrs defaultSystems;
   in {
-    formatter.x86_64-linux = alejandra.defaultPackage."x86_64-linux";
-
     packages = eachDefaultSystem (system: let
       pkgs = import nixpkgs {inherit system;};
     in (
       builtins.mapAttrs
       (name: value:
-        pkgs.stdenvNoCC.mkDerivation {
-          src = value;
-          pname = name;
-          version = plugins."${name}".version;
-          nativeBuildInputs = with pkgs; [unzip];
-          unpackPhase = ''
-            unzip ${value}
-          '';
-          installPhase = ''
-            mkdir -p $out
-            cp -R ./*.dll $out/.
-          '';
-        })
+        pkgs.stdenvNoCC.mkDerivation ({
+            src = value;
+            pname = name;
+            nativeBuildInputs = with pkgs; [unzip];
+            unpackPhase = ''
+              unzip ${value}
+            '';
+            installPhase = ''
+              mkdir -p $out
+              cp -R ./*.dll $out/.
+            '';
+          }
+          // plugins."${name}"))
       (lib.attrsets.getAttrs (lib.attrsets.mapAttrsToList (name: _: name) plugins) inputs)
     ));
     nixosModules.jellyfin-plugins = {
