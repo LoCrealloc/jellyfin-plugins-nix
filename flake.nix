@@ -32,10 +32,11 @@
     in (
       builtins.mapAttrs
       (name: value:
-        pkgs.stdenvNoCC.mkDerivation ({
+        pkgs.stdenvNoCC.mkDerivation {
             src = value;
             pname = name;
             nativeBuildInputs = with pkgs; [unzip];
+						version = plugins."${name}".version;
             unpackPhase = ''
               unzip ${value}
             '';
@@ -43,8 +44,7 @@
               mkdir -p $out
               cp -R ./*.dll $out/.
             '';
-          }
-          // plugins."${name}"))
+          })
       (lib.attrsets.getAttrs (lib.attrsets.mapAttrsToList (name: _: name) plugins) inputs)
     ));
     nixosModules.jellyfin-plugins = {
