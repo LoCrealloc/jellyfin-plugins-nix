@@ -70,8 +70,9 @@
               lib.strings.concatMapStrings
               (
                 plugin: ''
+                  rm -rf /var/lib/jellyfin/plugins/${plugin.name}
                   mkdir -p /var/lib/jellyfin/plugins/${plugin.name}
-                  cp ${plugin.path}/* /var/lib/jellyfin/plugins/${plugin.name}/.
+                  ln -s ${plugin.path}/* /var/lib/jellyfin/plugins/${plugin.name}/.
                   chmod -R 770 /var/lib/jellyfin/plugins/${plugin.name}
                 ''
               )
