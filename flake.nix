@@ -7,7 +7,7 @@
       url = "file+https://github.com/9p4/jellyfin-plugin-sso/releases/download/v3.5.2.3/sso-authentication_3.5.2.3.zip";
       flake = false;
     };
-    "Jellyfin.Plugin.KodiSyncQueue" = {
+    "kodisyncqueue" = {
       url = "file+https://github.com/jellyfin/jellyfin-plugin-kodisyncqueue/releases/download/v9/kodi-sync-queue_9.0.0.0.zip";
       flake = false;
     };
