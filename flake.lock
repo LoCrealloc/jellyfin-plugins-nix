@@ -15,22 +15,22 @@
     "kodisyncqueue": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-55+LA+X/qxN/SQjKvxtzIetdG/O9MlM1mNuZRn+Delw=",
+        "narHash": "sha256-jEIVmhcoe12h/IJunpT84r6tbuJo41t9SkX+66VXZhQ=",
         "type": "file",
-        "url": "https://github.com/jellyfin/jellyfin-plugin-kodisyncqueue/releases/download/v9/kodi-sync-queue_9.0.0.0.zip"
+        "url": "https://github.com/jellyfin/jellyfin-plugin-kodisyncqueue/releases/download/v11/kodi-sync-queue_11.0.0.0.zip"
       },
       "original": {
         "type": "file",
-        "url": "https://github.com/jellyfin/jellyfin-plugin-kodisyncqueue/releases/download/v9/kodi-sync-queue_9.0.0.0.zip"
+        "url": "https://github.com/jellyfin/jellyfin-plugin-kodisyncqueue/releases/download/v11/kodi-sync-queue_11.0.0.0.zip"
       }
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1712439257,
-        "narHash": "sha256-aSpiNepFOMk9932HOax0XwNxbA38GOUVOiXfUVPOrck=",
+        "lastModified": 1716948383,
+        "narHash": "sha256-SzDKxseEcHR5KzPXLwsemyTR/kaM9whxeiJohbL04rs=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "ff0dbd94265ac470dda06a657d5fe49de93b4599",
+        "rev": "ad57eef4ef0659193044870c731987a6df5cf56b",
         "type": "github"
       },
       "original": {
