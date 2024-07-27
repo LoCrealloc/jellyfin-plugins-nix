@@ -3,13 +3,13 @@
     "SSO-Auth": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-8pi19vdGzHXQAMzC+HQP3nmPLxgF6A6VTV+zx0oeofc=",
+        "narHash": "sha256-hCLwEvVgoiIhp/74DACizg3NgeT6zXfBVdytM4pkfxg=",
         "type": "file",
-        "url": "https://github.com/9p4/jellyfin-plugin-sso/releases/download/v3.5.2.3/sso-authentication_3.5.2.3.zip"
+        "url": "https://github.com/9p4/jellyfin-plugin-sso/releases/download/v3.5.2.4/sso-authentication_3.5.2.4.zip"
       },
       "original": {
         "type": "file",
-        "url": "https://github.com/9p4/jellyfin-plugin-sso/releases/download/v3.5.2.3/sso-authentication_3.5.2.3.zip"
+        "url": "https://github.com/9p4/jellyfin-plugin-sso/releases/download/v3.5.2.4/sso-authentication_3.5.2.4.zip"
       }
     },
     "kodisyncqueue": {
