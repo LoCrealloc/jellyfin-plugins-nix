@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     "SSO-Auth" = {
-      url = "file+https://github.com/9p4/jellyfin-plugin-sso/releases/download/v3.5.2.3/sso-authentication_3.5.2.3.zip";
+      url = "file+https://github.com/9p4/jellyfin-plugin-sso/releases/download/v3.5.2.4/sso-authentication_3.5.2.4.zip";
       flake = false;
     };
     "kodisyncqueue" = {
