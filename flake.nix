@@ -14,10 +14,11 @@
   };
 
   outputs =
-    { self
-    , nixpkgs
-    , ...
-    } @ inputs:
+    {
+      self,
+      nixpkgs,
+      ...
+    }@inputs:
     let
       lib = nixpkgs.lib;
       plugins = import ./plugins.nix;
@@ -35,33 +36,35 @@
     {
       formatter."x86_64-linux" = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
 
-      packages = eachDefaultSystem (system:
+      packages = eachDefaultSystem (
+        system:
         let
           pkgs = import nixpkgs { inherit system; };
         in
-        (
-          builtins.mapAttrs
-            (name: value:
-              pkgs.stdenvNoCC.mkDerivation {
-                src = value;
-                pname = name;
-                nativeBuildInputs = with pkgs; [ unzip ];
-                version = plugins."${name}".version;
-                unpackPhase = ''
-                  unzip ${value}
-                '';
-                installPhase = ''
-                  mkdir -p $out
-                  cp -R ./*.dll $out/.
-                '';
-              })
-            (lib.attrsets.getAttrs (lib.attrsets.mapAttrsToList (name: _: name) plugins) inputs)
-        ));
+        (builtins.mapAttrs (
+          name: value:
+          pkgs.stdenvNoCC.mkDerivation {
+            src = value;
+            pname = name;
+            nativeBuildInputs = with pkgs; [ unzip ];
+            version = plugins."${name}".version;
+            unpackPhase = ''
+              unzip ${value}
+            '';
+            installPhase = ''
+              mkdir -p $out
+              cp -R ./*.dll $out/.
+            '';
+          }
+        ) (lib.attrsets.getAttrs (lib.attrsets.mapAttrsToList (name: _: name) plugins) inputs))
+      );
       nixosModules.jellyfin-plugins =
-        { config
-        , pkgs
-        , ...
-        }: {
+        {
+          config,
+          pkgs,
+          ...
+        }:
+        {
           options.services.jellyfin = {
             enabledPlugins = lib.mkOption {
               type = lib.types.attrsOf lib.types.package;
@@ -77,18 +80,12 @@
                 ''
                   mkdir -p /var/lib/jellyfin/plugins
                 ''
-                + (
-                  lib.strings.concatMapStrings
-                    (
-                      plugin: ''
-                        rm -rf /var/lib/jellyfin/plugins/${plugin.name}
-                        mkdir -p /var/lib/jellyfin/plugins/${plugin.name}
-                        ln -s ${plugin.path}/* /var/lib/jellyfin/plugins/${plugin.name}/.
-                        chmod -R 770 /var/lib/jellyfin/plugins/${plugin.name}
-                      ''
-                    )
-                    (lib.attrsets.mapAttrsToList (name: path: { inherit name path; }) cfg.enabledPlugins)
-                );
+                + (lib.strings.concatMapStrings (plugin: ''
+                  rm -rf /var/lib/jellyfin/plugins/${plugin.name}
+                  mkdir -p /var/lib/jellyfin/plugins/${plugin.name}
+                  ln -s ${plugin.path}/* /var/lib/jellyfin/plugins/${plugin.name}/.
+                  chmod -R 770 /var/lib/jellyfin/plugins/${plugin.name}
+                '') (lib.attrsets.mapAttrsToList (name: path: { inherit name path; }) cfg.enabledPlugins));
             };
         };
     };
