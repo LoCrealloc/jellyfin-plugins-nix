@@ -8,7 +8,7 @@
       flake = false;
     };
     "kodisyncqueue" = {
-      url = "file+https://github.com/jellyfin/jellyfin-plugin-kodisyncqueue/releases/download/v11/kodi-sync-queue_11.0.0.0.zip";
+      url = "file+https://github.com/jellyfin/jellyfin-plugin-kodisyncqueue/releases/download/v14/kodi-sync-queue_14.0.0.0.zip";
       flake = false;
     };
   };
