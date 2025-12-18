@@ -1,6 +1,6 @@
 {
   SSO-Auth = {
-    version = "3.5.2.4";
+    version = "4.0.0.3";
     homepage = "https://github.com/9p4/jellyfin-plugin-sso";
   };
   kodisyncqueue = {

@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     "SSO-Auth" = {
-      url = "file+https://github.com/9p4/jellyfin-plugin-sso/releases/download/v3.5.2.4/sso-authentication_3.5.2.4.zip";
+      url = "file+https://github.com/9p4/jellyfin-plugin-sso/releases/download/v4.0.0.3/sso-authentication_4.0.0.3.zip";
       flake = false;
     };
     "kodisyncqueue" = {
@@ -76,16 +76,15 @@
               cfg = config.services.jellyfin;
             in
             lib.mkIf cfg.enable {
-              systemd.services.jellyfin.preStart =
-                ''
-                  mkdir -p /var/lib/jellyfin/plugins
-                ''
-                + (lib.strings.concatMapStrings (plugin: ''
-                  rm -rf /var/lib/jellyfin/plugins/${plugin.name}
-                  mkdir -p /var/lib/jellyfin/plugins/${plugin.name}
-                  ln -s ${plugin.path}/* /var/lib/jellyfin/plugins/${plugin.name}/.
-                  chmod -R 770 /var/lib/jellyfin/plugins/${plugin.name}
-                '') (lib.attrsets.mapAttrsToList (name: path: { inherit name path; }) cfg.enabledPlugins));
+              systemd.services.jellyfin.preStart = ''
+                mkdir -p /var/lib/jellyfin/plugins
+              ''
+              + (lib.strings.concatMapStrings (plugin: ''
+                rm -rf /var/lib/jellyfin/plugins/${plugin.name}
+                mkdir -p /var/lib/jellyfin/plugins/${plugin.name}
+                ln -s ${plugin.path}/* /var/lib/jellyfin/plugins/${plugin.name}/.
+                chmod -R 770 /var/lib/jellyfin/plugins/${plugin.name}
+              '') (lib.attrsets.mapAttrsToList (name: path: { inherit name path; }) cfg.enabledPlugins));
             };
         };
     };
