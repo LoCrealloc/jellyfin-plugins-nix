@@ -3,25 +3,25 @@
     "SSO-Auth": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-hCLwEvVgoiIhp/74DACizg3NgeT6zXfBVdytM4pkfxg=",
+        "narHash": "sha256-Maarlz0aQvucLhEYmm4Wv7/6Y+SU6Bsczmed6f+5qRo=",
         "type": "file",
-        "url": "https://github.com/9p4/jellyfin-plugin-sso/releases/download/v3.5.2.4/sso-authentication_3.5.2.4.zip"
+        "url": "https://github.com/9p4/jellyfin-plugin-sso/releases/download/v4.0.0.3/sso-authentication_4.0.0.3.zip"
       },
       "original": {
         "type": "file",
-        "url": "https://github.com/9p4/jellyfin-plugin-sso/releases/download/v3.5.2.4/sso-authentication_3.5.2.4.zip"
+        "url": "https://github.com/9p4/jellyfin-plugin-sso/releases/download/v4.0.0.3/sso-authentication_4.0.0.3.zip"
       }
     },
     "kodisyncqueue": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-aGIYjj7rs+b6aCrYNe27CuY1shu/MIQK9G076+lynXI=",
+        "narHash": "sha256-OVaiIHKGXfmyA3QAHPoPkAS7qnKnVeEffXiuIrFB5DA=",
         "type": "file",
-        "url": "https://github.com/jellyfin/jellyfin-plugin-kodisyncqueue/releases/download/v14/kodi-sync-queue_14.0.0.0.zip"
+        "url": "https://github.com/jellyfin/jellyfin-plugin-kodisyncqueue/releases/download/v15/kodi-sync-queue_15.0.0.0.zip"
       },
       "original": {
         "type": "file",
-        "url": "https://github.com/jellyfin/jellyfin-plugin-kodisyncqueue/releases/download/v14/kodi-sync-queue_14.0.0.0.zip"
+        "url": "https://github.com/jellyfin/jellyfin-plugin-kodisyncqueue/releases/download/v15/kodi-sync-queue_15.0.0.0.zip"
       }
     },
     "nixpkgs": {
